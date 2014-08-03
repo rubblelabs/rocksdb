@@ -6,7 +6,7 @@ Storage layer to access rippled nodestore and a tool for dumping its contents.
 
 ##Installation
 
-Install [Go](http://golang.org/doc/install) making sure to set a GOPATH.
+Install [Go](http://golang.org/doc/install) making sure to set a GOPATH and add GOPATH/bin to your PATH.
 Install [RocksDB dependencies](https://github.com/facebook/rocksdb/blob/master/INSTALL.md).
 
 ```bash
