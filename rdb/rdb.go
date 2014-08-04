@@ -100,7 +100,7 @@ func diff(w io.Writer) ledger.QueueFunc {
 			return err
 		}
 		for _, op := range diff {
-			fmt.Printf("%d,%s\n", current.LedgerSequence, op)
+			fmt.Fprintf(w, "%d,%s\n", current.LedgerSequence, op)
 		}
 		return nil
 	}
@@ -122,7 +122,12 @@ func dump(w io.Writer) ledger.QueueFunc {
 func summary(w io.Writer) ledger.QueueFunc {
 	return func(current, previous *ledger.LedgerState) error {
 		current.Fill()
-		return current.WriteSummary(w)
+		summary, err := current.Summary()
+		if err != nil {
+			return err
+		}
+		fmt.Printf("%d,%s\n", current.LedgerSequence, summary)
+		return nil
 	}
 }
 
