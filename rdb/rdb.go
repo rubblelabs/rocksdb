@@ -24,7 +24,7 @@ var end = flag.String("end", "4109C6F2045FC7EFF4CDE8F9905D19C28820D86304080FF886
 var path = flag.String("path", "", "location of db folder")
 var mem = flag.Bool("mem", false, "use memory db")
 var cpu = flag.Int("cpu", runtime.NumCPU()*2, "number of cpu's to use")
-var command = flag.String("command", "diff", "command to run [diff/dump/summary/transaction]")
+var command = flag.String("command", "diff", "command to run [diff/dump/summary/transaction/ledgers/accounts]")
 var cacheSize = flag.Int("cache_size", 0, "size of the rocksdb memory cache")
 
 func checkErr(err error) {
