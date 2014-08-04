@@ -13,8 +13,11 @@ Install [RocksDB dependencies](https://github.com/facebook/rocksdb/blob/master/I
 git clone https://github.com/facebook/rocksdb.git
 cd rocksdb
 make shared_lib
-go get -u -v github.com/rubblelabs/rocksdb/rdb
+CGO_CFLAGS="-I/path/to/rocksdb/include" CGO_LDFLAGS="-L/path/to/rocksdb" go get -u -v github.com/rubblelabs/rocksdb/rdb
 ```
+
+changing the /path/to/rocksdb as appropriate.
+
 
 ##Usage
 

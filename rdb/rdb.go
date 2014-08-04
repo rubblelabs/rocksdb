@@ -99,8 +99,8 @@ func diff(w io.Writer) ledger.QueueFunc {
 		if err != nil {
 			return err
 		}
-		if err := diff.Dump(current.LedgerSequence, w); err != nil {
-			return err
+		for _, op := range diff {
+			fmt.Printf("%d,%s\n", current.LedgerSequence, op)
 		}
 		return nil
 	}
