@@ -50,7 +50,7 @@ rdb -start="491E88B0A5AB29378B4F4E6EAB1E782AF495D712A817C943D0D7A36045EFA611" -e
 
 Show the summary of all transactions and account state nodes in a ledger, with columns:
 
-Ledger Sequence,Transaction Inner Nodes,Payments,AccountSets,SetRegularKeys,OfferCreates,OfferCancels,TrustSets,Amendments,SetFees,Account Inner Nodes,AccountRoot,DirectoryNode,Amendments,LedgerHashes,Offer,RippleState,FeeSettings
+Ledger Sequence, Transaction Inner Nodes, Payments, AccountSets, SetRegularKeys, OfferCreates, OfferCancels, TrustSets, Amendments, SetFees, Account Inner Nodes, AccountRoot, DirectoryNode, Amendments, LedgerHashes, Offer, RippleState, FeeSettings
 
 ```bash
 rdb -path=nodedb/ -command=summary
@@ -95,6 +95,7 @@ D711E24F58292814F1782E1B978010E3035EB15A0E6C2C21D3C81A6D06DC49A1:0001869E0001869
 ```
 
 Dump the whole account state tree with columns:
+
 Ledger, Depth, Node Type, Hash
 
 ```bash
