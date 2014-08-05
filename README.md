@@ -37,7 +37,7 @@ rdb -help
 
 ##Examples
 
-All commands have a -start and -end flag which is a ledger hash. For example to get a summary of ledgers 100,000 to 32570 (the default), you can do:
+All commands have a -start and -end flag which is a ledger hash. For example to get a summary of ledgers 100,000 to 32,570 (the default), you can do:
 
 ```bash
 rdb -start="491E88B0A5AB29378B4F4E6EAB1E782AF495D712A817C943D0D7A36045EFA611" -end="4109C6F2045FC7EFF4CDE8F9905D19C28820D8630408F886B299F0206E42B5" -path=nodedb/ -command=summary
