@@ -96,7 +96,7 @@ D711E24F58292814F1782E1B978010E3035EB15A0E6C2C21D3C81A6D06DC49A1:0001869E0001869
 
 Dump the whole account state tree with columns:
 
-Ledger, Depth, Node Type, Hash
+Ledger, Depth, Node Type, NodeId
 
 ```bash
 rdb -path=nodedb/ -command=dump
