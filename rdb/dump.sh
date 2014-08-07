@@ -1,5 +1,5 @@
 #!/bin/bash
-# Example of compsing commands to dump everything in the same format
+# Example of composing commands to dump everything in the same format
 # Useful for packing the full history
 # Could be used in map reduce scenarios
 # $1 is the path to the rocksdb directory
