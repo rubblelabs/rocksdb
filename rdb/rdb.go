@@ -29,8 +29,8 @@ var mem = flag.Bool("mem", false, "use memory db")
 var cpu = flag.Int("cpu", runtime.NumCPU()*2, "number of cpu's to use")
 var command = flag.String("command", "diff", "command to run [diff/dump/summary/transaction/ledgers/accounts]")
 var cacheSize = flag.Int("cache_size", 0, "size of the rocksdb memory cache")
-var dump_format = flag.String("dump_format", "%[1]d,%[2]s,%[3]d,%[4]s,%[5]X\n", "customisable format string for dump/accounts/transactions commands. Indexes: [1]:LedgerSequence, [2]:NodeType, [3]:Depth, [4]:NodeId, [5]:NodeValue")
-var diff_format = flag.String("diff_format", "%[1]d,%[6]c,%[2]s,%[3]d,%[4]s,%[5]X\n", "customisable format string for diff command Indexes: [1]:LedgerSequence, [2]:NodeType, [3]:Depth, [4]:NodeId, [5]:NodeValue, [6]:Action")
+var dump_format = flag.String("dump_format", "%[1]d,%[2]s,%[3]d,%[4]s,%[5]X", "customisable format string for dump/accounts/transactions commands. Indexes: [1]:LedgerSequence, [2]:NodeType, [3]:Depth, [4]:NodeId, [5]:NodeValue")
+var diff_format = flag.String("diff_format", "%[1]d,%[6]c,%[2]s,%[3]d,%[4]s,%[5]X", "customisable format string for diff command Indexes: [1]:LedgerSequence, [2]:NodeType, [3]:Depth, [4]:NodeId, [5]:NodeValue, [6]:Action")
 
 func checkErr(err error) {
 	if err != nil {
@@ -63,7 +63,7 @@ func outputNode(n *ledger.RadixNode, ledgerSequence uint32) error {
 	if err != nil {
 		return err
 	}
-	_, err = fmt.Printf(*dump_format, fields...)
+	_, err = fmt.Printf(*dump_format+"\n", fields...)
 	return err
 }
 
@@ -72,7 +72,7 @@ func outputDiffNode(op *ledger.RadixOperation, ledgerSequence uint32) error {
 	if err != nil {
 		return err
 	}
-	_, err = fmt.Printf(*diff_format, append(fields, op.Action)...)
+	_, err = fmt.Printf(*diff_format+"\n", append(fields, op.Action)...)
 	return err
 }
 
@@ -81,7 +81,7 @@ func outputLedger(h data.Storer) error {
 	if err != nil {
 		return err
 	}
-	_, err = fmt.Printf("%s:%X\n", hash, value)
+	_, err = fmt.Printf("%s,%X\n", hash, value)
 	return err
 }
 
@@ -175,9 +175,7 @@ func summary() ledger.QueueFunc {
 
 func mustDecodeHash(hash string) *data.Hash256 {
 	h, err := data.NewHash256(hash)
-	if err != nil {
-		glog.Fatalln(err.Error())
-	}
+	checkErr(err)
 	return h
 }
 
