@@ -129,3 +129,18 @@ rdb -path=ripple/nodedb/ -command=accounts
 100000,AccountRoot,3,CF36E048A0087D50AD6ADA2737FBE1F63FBF1545CDB50FE9E87DF3EB3BC71EA0,0000000000000000034D4C4E00110061220000000024000000032500011F162D0000000055F9648B95E7F36804F30A3F56C749B418AC8918C840901A2A345AFE80218704A96240000000160DC06C8114712B799C79D1EEE3094B59EF9920C7FEB3CE449902CE52E3E46AD340B1C7900F86AFB959AE0C246916E3463905EDD61DE26FFFDD
 ...
 ```
+
+Bonus points are awarded for piping into the explain tool:
+
+```bash
+go get -u github.com/rubblelabs/ripple/tools/explain
+rdb -path=ripple/nodedb/ -command=transactions -dump_format="%[5]X"| explain -
+✓ AccountSet  0.00001  ✓   rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH 53       
+✓ Payment     0.00001  ✓   rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH => rJeHyfdzw88wbfFQFA7pkyzA81812Fj6Bw 500/XRP                                                      <nil>
+✓ Payment     0.00001  ✗   r9JmDFydsvkDK9MtSjxAwYp3NosFWsU62B => rJeHyfdzw88wbfFQFA7pkyzA81812Fj6Bw 100/XRP                                                      <nil>
+✓ Payment     0.00001  ✗   rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH => rJeHyfdzw88wbfFQFA7pkyzA81812Fj6Bw 0.04/BTC/rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH                  <nil>
+✓ AccountSet  0.00001  ✓   rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH 50       
+✓ Payment     0.00001  ½   rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH => rExnTpsgDupeJGW3aK469NhNhPGWGKFDPZ 0.02/BTC/rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH                  <nil>
+✓ AccountSet  0.00001  ✓   rsWMoLZhRqTGsmztMRyv5UrE28bTbn8gAH 48  
+...
+```
