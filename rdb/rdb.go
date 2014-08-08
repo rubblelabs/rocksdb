@@ -217,8 +217,10 @@ func main() {
 		queue.Add(state)
 		checkErr(queue.Do(cmd()))
 		if *from == *to {
-			queue.AddEmpty()
-			checkErr(queue.Do(cmd()))
+			if *command != "diff" || *to == *unfortunateGenesis {
+				queue.AddEmpty()
+				checkErr(queue.Do(cmd()))
+			}
 			return
 		}
 		*from = state.PreviousLedger
